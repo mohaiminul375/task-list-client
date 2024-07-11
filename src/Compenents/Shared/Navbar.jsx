@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-[#141C27] text-[#00FFEE] h-20  px-8 fixed shadow-md shadow-[#55E6A5]">
+    <div className="navbar bg-[#141C27] text-[#00FFEE] h-20  px-8 fixed shadow-md shadow-[#55E6A5] z-30">
       <div className="navbar-start">
         
        <h4 className="md:hidden text-xl font-bold font-playwrite-hr">TO-DO-List</h4>
@@ -14,8 +14,8 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <div className="flex gap-5 text-xl">
-             <NavLink to='/' className={({isActive})=>isActive?'text-red':''}>Login</NavLink>
-             <NavLink>Register</NavLink>
+             <NavLink to='/login' className={({isActive})=>isActive?'font-bold underline':''}>Login</NavLink>
+             <NavLink to='/register' className={({isActive})=>isActive?'font-bold underline':''}>Register</NavLink>
         </div>
       </div>
     </div>

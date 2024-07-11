@@ -1,19 +1,30 @@
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
   return (
     <section>
       <div className="flex justify-between items-center">
         <div className="hero min-h-screen ">
           <div
             className="hero-content flex-col lg:flex-row-reverse w-96
-          border-2 rounded-2xl border-[#00FFEE] shadow-lg shadow-[#00FFEE]"
+            border-2 rounded-2xl border-[#00FFEE] shadow-lg shadow-[#00FFEE]"
           >
             <div className="card w-full max-w-sm shrink-0  text-[#00FFEE]">
               <form className="card-body ">
-                <h2 className="text-center mb-10 font-bold text-4xl font-playwrite-hr ">
-                  Login
+                <h2 className="text-center font-bold text-4xl font-playwrite-hr ">
+                  Register
                 </h2>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="text-[#00FFEE]">Name</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="name"
+                    className="input input-bordered text-black"
+                    required
+                  />
+                </div>
                 <div className="form-control">
                   <label className="label">
                     <span className="text-[#00FFEE]">Email</span>
@@ -38,7 +49,7 @@ const Login = () => {
                 </div>
                 <div className="form-control mt-6">
                   <button className="py-2 rounded-lg bg-[#00FFEE] text-black font-bold hover:bg-[#00ffeea2]">
-                    Login
+                    Register
                   </button>
                 </div>
               </form>
@@ -47,7 +58,7 @@ const Login = () => {
                 <span className="w-1/5 border-b border-gray-600 lg:w-1/5"></span>
 
                 <span className="text-xs text-center  uppercase text-[#00FFEE] hover:underline">
-                  or login with Social Media
+                  or Register with Social Media
                 </span>
 
                 <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/5"></span>
@@ -66,9 +77,9 @@ const Login = () => {
                 </span>
               </button>
               <p className="text-center mt-3">
-                Are you new here?{" "}
-                <Link className="hover:underline" to="/register">
-                  Please Register
+                Already have an account ?{" "}
+                <Link className="hover:underline" to="/login">
+                  Please Login
                 </Link>
               </p>
             </div>
@@ -79,4 +90,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
