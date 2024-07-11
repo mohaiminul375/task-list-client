@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
-    <section>
+    <section className="">
       <div className="flex justify-between items-center">
         <div className="hero min-h-screen ">
           <div

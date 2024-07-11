@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
 
 const Register = () => {
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const password= e.target.password.value;
+    console.log(name,email,password)
+  };
+
   return (
-    <section>
+    <section className="mt-10">
       <div className="flex justify-between items-center">
         <div className="hero min-h-screen ">
           <div
@@ -10,8 +18,8 @@ const Register = () => {
             border-2 rounded-2xl border-[#00FFEE] shadow-lg shadow-[#00FFEE]"
           >
             <div className="card w-full max-w-sm shrink-0  text-[#00FFEE]">
-              <form className="card-body ">
-                <h2 className="text-center font-bold text-4xl font-playwrite-hr ">
+              <form onSubmit={handleRegister} className="card-body ">
+                <h2 className="text-center font-bold text-4xl font-playwrite-hr">
                   Register
                 </h2>
                 <div className="form-control">
@@ -21,6 +29,7 @@ const Register = () => {
                   <input
                     type="text"
                     placeholder="name"
+                    name="name"
                     className="input input-bordered text-black"
                     required
                   />
@@ -31,6 +40,7 @@ const Register = () => {
                   </label>
                   <input
                     type="email"
+                    name="email"
                     placeholder="email"
                     className="input input-bordered text-black"
                     required
@@ -42,6 +52,7 @@ const Register = () => {
                   </label>
                   <input
                     type="password"
+                    name="password"
                     placeholder="password"
                     className="input input-bordered text-black"
                     required
