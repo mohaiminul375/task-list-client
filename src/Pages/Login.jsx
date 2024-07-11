@@ -1,6 +1,23 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
+  const { login } = useContext(AuthContext);
+  // handle login
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(email, password);
+    login(email, password)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <section className="">
       <div className="flex justify-between items-center">
@@ -10,7 +27,7 @@ const Login = () => {
           border-2 rounded-2xl border-[#00FFEE] shadow-lg shadow-[#00FFEE]"
           >
             <div className="card w-full max-w-sm shrink-0  text-[#00FFEE]">
-              <form className="card-body ">
+              <form onSubmit={handleLogin} className="card-body ">
                 <h2 className="text-center mb-10 font-bold text-4xl font-playwrite-hr ">
                   Login
                 </h2>
@@ -19,6 +36,7 @@ const Login = () => {
                     <span className="text-[#00FFEE]">Email</span>
                   </label>
                   <input
+                    name="email"
                     type="email"
                     placeholder="email"
                     className="input input-bordered text-black"
@@ -30,6 +48,7 @@ const Login = () => {
                     <span className="text-[#00FFEE]">Password</span>
                   </label>
                   <input
+                    name="password"
                     type="password"
                     placeholder="password"
                     className="input input-bordered text-black"
