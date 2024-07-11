@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../Compenents/Shared/Navbar";
+import Footer from "../Compenents/Shared/Footer";
 
 
 const Main = () => {
@@ -8,11 +9,11 @@ const Main = () => {
           <header>
          <Navbar></Navbar>
             </header>  
-            <main className="bg-[#09101A] text-white">
+            <main className="bg-[#09101A] text-white pt-20 min-h-[calc(100vh-128px)] pb-28">
                 <Outlet></Outlet>
             </main>
             <footer>
-                this is footer
+               <Footer></Footer>
             </footer>
         </>
     );
