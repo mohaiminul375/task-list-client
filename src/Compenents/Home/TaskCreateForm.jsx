@@ -30,11 +30,13 @@ const TaskCreateForm = () => {
   // handle input by react hook form
   const { register, handleSubmit } = useForm();
   const onSubmit = (task_info) => {
+    task_info.email = user?.email ;
     if (checked) {
       task_info.status = "Completed";
     } else {
       task_info.status = "Not Complete";
     }
+
     console.log(task_info);
     mutateAsync({ task_info });
   };
