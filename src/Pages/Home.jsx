@@ -1,10 +1,11 @@
+import ADDTask from "../Compenents/Home/ADDTask";
 
 
 const Home = () => {
     return (
-        <div>
-          <h2>dssss</h2>  
-        </div>
+        <section className="mt-16">
+          <ADDTask></ADDTask>  
+        </section>
     );
 };
 
