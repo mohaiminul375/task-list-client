@@ -44,7 +44,7 @@ const ALLTask = () => {
             <tbody>
                    {/* map all data */}
                    {
-                    tasks.map((task,idx)=><TaskTable
+                    tasks?.map((task,idx)=><TaskTable
                     key={task._id}
                     idx={idx}
                     task={task}

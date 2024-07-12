@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import TaskUpdate from "../TaskUpdate";
+import TaskDetails from "./TaskDetails";
 
 const TaskTable = ({ task, idx }) => {
   const axiosSecure = useAxiosSecure();
@@ -11,20 +12,7 @@ const TaskTable = ({ task, idx }) => {
   // destructuring object
   const { _id, task_title, task_description, status } = task;
   //update
-  const { mutateAsync:updateAsync } = useMutation({
-    mutationFn: async()=>{
-        const {data}=axiosSecure.patch(`/tasks/${_id}`)
-        return data
-    },
-    onSuccess:(data)=>{
-        console.log(data)
-    }
-  });
-const handleUpdate=(id)=>{
-mutateAsync({id})
-}
-
-
+  
 
   // delete
   const { mutateAsync } = useMutation({
@@ -68,12 +56,13 @@ mutateAsync({id})
       <td className="flex items-center gap-4 cursor-pointer">
         {/* view button */}
         <FaEye
-          onClick={()=>handleUpdate(_id)}
+          onClick={() => document.getElementById(`details${_id}`).showModal()}
           className="text-orange-800 cursor-pointer"
         />
         {/* edit button */}
         <FaPen
-          onClick={() => document.getElementById(_id).showModal()}
+          onClick={() => document.getElementById(_id
+          ).showModal()}
           className="text-orange-800 font-bold cursor-pointer"
         />
         {/* delete button */}
@@ -82,8 +71,13 @@ mutateAsync({id})
           className="bg-red-600 p-2 text-3xl rounded-md"
         />
       </td>
+      {/* task update modal */}
       <dialog id={_id} className="modal">
         <TaskUpdate task={task}></TaskUpdate>
+      </dialog>
+      {/* view Details */}
+      <dialog id={`details${_id}`} className="modal">
+        <TaskDetails id={_id}></TaskDetails>
       </dialog>
     </tr>
   );

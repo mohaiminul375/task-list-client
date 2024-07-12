@@ -1,12 +1,12 @@
 import { FaXmark } from "react-icons/fa6";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useState } from "react";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
-
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 const TaskUpdate = ({ task }) => {
-  const axiosSecure = useAxiosSecure();
+    const axiosSecure = useAxiosSecure();
+    const queryClient = useQueryClient();
   const { _id, task_title, task_description, status } = task;
   console.log(status);
   // handle checkbox
@@ -20,6 +20,10 @@ const TaskUpdate = ({ task }) => {
     },
     onSuccess: (data) => {
       console.log(data);
+      if(data.insertedId){
+        queryClient.invalidateQueries({ queryKey: ["all-task"] });
+        toast.success('data update successfully')
+      }
     },
   });
   //   react hook form
