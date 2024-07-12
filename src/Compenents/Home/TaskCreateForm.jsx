@@ -7,12 +7,11 @@ import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const TaskCreateForm = () => {
-
   // import axios
   const axiosSecure = useAxiosSecure();
   // handle checkbox
   const [checked, setChecked] = useState(false);
-  console.log(checked);
+//  tanstack query
   const queryClient = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationFn: async ({ task_info }) => {
@@ -32,9 +31,7 @@ const TaskCreateForm = () => {
   // handle input by react hook form
   const { register, handleSubmit ,reset} = useForm();
   const onSubmit = (task_info) => {
-  
    task_info.status=checked;
-
     console.log(task_info);
     mutateAsync({ task_info });
   };

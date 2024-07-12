@@ -5,7 +5,7 @@ import { RingLoader } from "react-spinners";
 
 const TaskDetails = ({id}) => {
     const axiosSecure=useAxiosSecure()
-    // get data by id
+    // get data by id tan stack query
     const {data:task,isLoading}=useQuery({
         queryFn:async()=>{
             const {data}=await axiosSecure.get(`/tasks/${id}`)

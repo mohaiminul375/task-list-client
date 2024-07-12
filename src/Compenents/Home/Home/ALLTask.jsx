@@ -21,7 +21,7 @@ const ALLTask = () => {
       </div>
     );
   }
-  console.log(tasks);
+  
   return (
     <section className="mt-10">
       <div>

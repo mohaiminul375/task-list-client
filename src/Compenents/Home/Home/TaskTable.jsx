@@ -11,7 +11,7 @@ const TaskTable = ({ task, idx }) => {
   const queryClient = useQueryClient();
   // destructuring object
   const { _id, task_title, task_description, status } = task;
-  //update
+ 
   
 
   // delete
