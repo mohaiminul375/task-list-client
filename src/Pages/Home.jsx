@@ -4,7 +4,7 @@ import ALLTask from "../Compenents/Home/Home/ALLTask";
 
 const Home = () => {
     return (
-        <section className="mt-16">
+        <section className="mt-20">
           <ADDTask></ADDTask>
           <ALLTask></ALLTask> 
         </section>

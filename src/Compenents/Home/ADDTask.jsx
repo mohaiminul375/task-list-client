@@ -4,13 +4,13 @@ import TaskCreateForm from "./TaskCreateForm";
 const ADDTask = () => {
   return (
 <>
-    <section>
+    <section className="">
       <div className=" text-xl text-[#00FFEE] font-playwrite-hr">
         <div className="flex justify-center">
         <button
          onClick={()=>document.getElementById('input_modal').showModal()}
         className="flex items-center justify-center p-2 border-2 rounded-full border-[#00FFEE] hover:bg-[#00FFEE] hover:text-black">
-          <FaPlus /> Add Your Tas
+          <FaPlus /> Add Your Task
         </button>
         </div>
         <div>
