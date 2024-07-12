@@ -1,5 +1,6 @@
 # Simple ToDO List
-
+- Task list management website,
+- users can add, edit,update,delete their task
 # Live_url: https://task-list-375.web.app/
 
 # Run the project Locally
