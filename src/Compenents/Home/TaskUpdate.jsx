@@ -1,44 +1,36 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
 import { FaXmark } from "react-icons/fa6";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import toast, { Toaster } from "react-hot-toast";
-import { AuthContext } from "../../Provider/AuthProvider";
+import { useState } from "react";
+import { Toaster } from "react-hot-toast";
+import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
 
-const TaskCreateForm = () => {
-
-  // import axios
+const TaskUpdate = ({ task }) => {
   const axiosSecure = useAxiosSecure();
+  const { _id, task_title, task_description, status } = task;
+  console.log(status);
   // handle checkbox
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(status);
   console.log(checked);
-  const queryClient = useQueryClient();
-  const { mutateAsync } = useMutation({
-    mutationFn: async ({ task_info }) => {
-      const { data } = await axiosSecure.post("/tasks", task_info);
+  
+  const {mutateAsync} = useMutation({
+    mutationFn: async ({ _id, update_info }) => {
+      const { data } =await axiosSecure.patch(`/tasks/${_id}`,update_info);
       return data;
     },
     onSuccess: (data) => {
       console.log(data);
-      if (data.insertedId) {
-        reset()
-        toast.success("Successfully toasted!");
-        queryClient.invalidateQueries({ queryKey: ["all-task"] });
-      }
     },
   });
+  //   react hook form
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (update_info) => {
+    // let update_info.status=;
 
-  // handle input by react hook form
-  const { register, handleSubmit ,reset} = useForm();
-  const onSubmit = (task_info) => {
-  
-   task_info.status=checked;
-
-    console.log(task_info);
-    mutateAsync({ task_info });
+    update_info.status = checked;
+    console.log(update_info);
+    mutateAsync({_id,update_info})
   };
-
   return (
     <div className="modal-box max-w-xl bg-[#0C1117] border shadow-lg shadow-[#55E6A5] md:px-10">
       {/* closing button */}
@@ -61,6 +53,7 @@ const TaskCreateForm = () => {
             placeholder="your task title"
             className="input input-bordered text-black"
             required
+            defaultValue={task_title}
             {...register("task_title")}
           />
         </div>
@@ -74,15 +67,17 @@ const TaskCreateForm = () => {
             placeholder="your task description"
             className="input input-bordered text-black"
             required
+            defaultValue={task_description}
             {...register("task_description")}
           />
           <div className="mt-5 flex items-center gap-6">
             <p>Mark as complete</p>
             <input
-            // defaultValue={status?'Completed':'notComplete'}
+              defaultChecked={checked}
               onChange={(e) => setChecked(e.target.checked)}
               type="checkbox"
               className="checkbox bg-[#55E6A5] border-2 border-[#55E6A5]"
+              //   {...register("status")}
             />
           </div>
         </div>
@@ -97,4 +92,4 @@ const TaskCreateForm = () => {
   );
 };
 
-export default TaskCreateForm;
+export default TaskUpdate;
