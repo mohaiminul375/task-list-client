@@ -20,7 +20,7 @@ const TaskUpdate = ({ task }) => {
     },
     onSuccess: (data) => {
       console.log(data);
-      if(data.insertedId){
+      if(data.modifiedCount){
         queryClient.invalidateQueries({ queryKey: ["all-task"] });
         toast.success('data update successfully')
       }
